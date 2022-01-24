@@ -1,0 +1,21 @@
+.footer{
+    font-size: 9px;
+    padding-bottom: 8px;
+    padding-top: 14px;
+    padding-left: 18px;
+    clear: both;
+    width:100%;
+    position: absolute;
+    background-color: rgba(142, 36, 170, 0.16);
+}
+.about-footer{
+    margin-left: 28px;
+}
+.copyright{
+    text-align:  end;
+    padding-left: 3px;
+}
+.title-footer{
+    font-style: initial;
+    font-size: 13px;
+}

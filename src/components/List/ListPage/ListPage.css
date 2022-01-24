@@ -1,0 +1,15 @@
+body {
+    background: #eee
+}
+
+.card {
+    border: none;
+    margin: 20px 20px 100px 20px;
+    padding: 28px;
+    width: 780px;
+    border-radius: 20px;
+}
+
+.fonts {
+    font-size: 11px
+}
