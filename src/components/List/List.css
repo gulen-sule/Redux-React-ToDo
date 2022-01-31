@@ -5,8 +5,19 @@
     border-radius: 90pt;
 }
 .btn-add{
-    width: 80px;
+    width: content-box;
     text-align: center;
+
+}
+#input-list{
+
+    display: flex;
+    justify-content: center;
+}
+#btn-a{
+    width: 60px;
+    font-size: 18px;
+    border-radius: 8px;
     margin: 12px;
 }
 .btn-edit{
@@ -42,6 +53,7 @@
     margin-top: 12px;
     margin-bottom: 16px;
 }
+
 .input-box{
     width:300px;
     margin-left: 20px;
