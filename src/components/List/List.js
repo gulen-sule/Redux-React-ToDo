@@ -113,7 +113,7 @@ function List() {
                                onChange={(e) => setAddedItem(e.target.value)}/>
 
                         {hasChosen ?
-                            <button className="btn-add" type="button" onClick={deleteMultiple}>Delete</button> :
+                            <button className="btn-add" id="btn-b" type="button" onClick={deleteMultiple}>Delete</button> :
                             <button className="btn-add" id="btn-a" onClick={(event) => handleClick(event)}>Add</button>}
                     </div>
                 </div>
