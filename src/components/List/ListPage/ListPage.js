@@ -32,14 +32,15 @@ function ListPage() {
             </div>
             <div id="lists">
                 {lists.map((listName, value) =>
-                    <div key={value} className="list-card row">
-                        <div className="card-subtitle">
+                    <div key={value} className="row">
+                        <div className="list-card-title">
                             <Button id="btn-dlt-list" onClick={() => deleteLists(value)}>X</Button>
                             {listName}</div>
-                        {listsArr[value]}
+                        <div className="list-card">
+                            {listsArr[value]}
+                        </div>
                     </div>
                 )}
-
             </div>
             <ListFooter/>
         </div>

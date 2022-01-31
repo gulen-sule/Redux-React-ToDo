@@ -3,32 +3,48 @@
     padding: 28px;
     width: 780px;
     border-radius: 20px;
-background-color: #f1e2a4;
+    background-color: #f5e8b7;
     left: 50%;
+    border-bottom: solid rgba(190, 180, 85, 0.66);
+    margin: 6px;
+}
+.list-card-title {
+    padding: 8px;
+    width: 780px;
+    border-bottom: solid rgba(122, 80, 1, 0.8);
+    font-size: 20px;
+    border-radius: 20px;
+    background-color: #f6e7a5;
+    left: 50%;
+    margin: 6px;
 }
 
 .fonts {
     font-size: 11px
 }
-.row{
+
+.row {
     margin: 8px 12px 8px 6px;
 
 }
-.inp-list-page{
+
+.inp-list-page {
     display: flex;
     justify-content: center;
-    align-items:  center;
+    align-items: center;
 }
-.btn-list-page{
+
+.btn-list-page {
     margin: 8px 12px 8px 14px;
 }
-#btn-dlt-list{
-  background-color: #f195a3;
+
+#btn-dlt-list {
+    background-color: #f195a3;
     border: #eeeeee;
     font-size: 14px;
     padding: 6px;
     width: 30px;
     color: black;
-     margin: 8px 12px 8px 6px;
+    margin: 8px 12px 8px 6px;
 }
 
