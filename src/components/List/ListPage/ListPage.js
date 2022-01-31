@@ -1,28 +1,25 @@
 import React, {useState} from 'react';
 import List from "../List";
 import './ListPage.css'
+import {useSelector} from "react-redux";
 import ListFooter from "../listFooter/listFooter";
 import {Button} from "react-bootstrap";
-import {increment, decrement, decrementAmount} from "../../../redux/shoplist/shoplistSlice";
+import {increment, decrement, addList, deleteList} from "../../../redux/shoplist/shoplistSlice";
 import {useDispatch} from "react-redux";
 
 function ListPage(props) {
-    const [lists, setLists] = useState([]);
-    const [listsArr, setListsArr] = useState([]);
+    let listsArr=useSelector((state => state.shoplist.lists))
+    let lists=useSelector((state => state.shoplist.listNames))
     const [listName, setListName] = useState("");
     const dispatch = useDispatch();
 
-    function addList() {
+    function addtoList() {
         dispatch(increment())
-        setLists([...lists,listName])
-        setListsArr([...listsArr,<List/>])
+        dispatch(addList(listName))
     }
     function deleteLists(index){
+        dispatch(deleteList(index))
         dispatch(decrement())
-        lists.splice(index, 1)
-        setLists([...lists])
-        listsArr.splice(index, 1)
-        setListsArr([...listsArr])
     }
 
     return (
@@ -30,7 +27,7 @@ function ListPage(props) {
             <div className="row">
                 <div className="col inp-list-page">
                     <input value={listName} onChange={(e) => setListName(e.target.value)}/>
-                    <Button className="btn-list-page" onClick={addList}>Add</Button>
+                    <Button className="btn-list-page" onClick={addtoList}>Add</Button>
                 </div>
             </div>
             <div id="lists">

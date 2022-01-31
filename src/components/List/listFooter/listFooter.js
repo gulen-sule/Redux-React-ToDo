@@ -5,7 +5,7 @@ function ListFooter(props) {
     let listNum = useSelector((state => state.shoplist.listNum));
     return (
         <div className="list-footer">
-            <p>{listNum} tane listeniz bulunmakta</p>
+            <p>{listNum} adet listeniz bulunmakta</p>
         </div>
     );
 }
