@@ -20,8 +20,9 @@ function ListPage(props) {
     function deleteLists(index){
         dispatch(decrement())
         lists.splice(index, 1)
+        setLists([...lists])
         listsArr.splice(index, 1)
-
+        setListsArr([...listsArr])
     }
 
     return (
