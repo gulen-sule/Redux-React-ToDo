@@ -10,6 +10,7 @@ function List(props) {
     const [addedItem, setAddedItem] = useState("");
     const [editable, setEditable] = useState([false, false]);
     const [hasChosen, setHasChosen] = useState(false);
+    const [isChecked, setIsChecked] = useState([]);
     const [chosenIndexes, setChosenIndexes] = useState([]);
     const dispatch = useDispatch();
 
@@ -20,6 +21,9 @@ function List(props) {
                 temp.push(items[i])
         }
         dispatch(actions.delete_todos(props.id,temp))
+        for(let i=0;i<isChecked.length;i++)
+            isChecked[i]=false
+        setIsChecked([...isChecked])
         setChosenIndexes([])
         setHasChosen(false)
     }
@@ -79,7 +83,9 @@ function List(props) {
         return (
             <>
                 <div className="col-1">
-                    <input type="checkbox" name={index}  onClick={(e) => checked(index)}/>
+                    <input type="checkbox" name={index}  checked={isChecked[index]}
+                           onChange={()=>(isChecked[index]=!isChecked[index])}
+                           onClick={(e) => checked(index)}/>
                 </div>
                 <div className="col-9">
 
@@ -116,6 +122,7 @@ function List(props) {
                                     onClick={() => {
                                         dispatch(actions.add_todo(props.id, addedItem))
                                         setAddedItem("")
+                                        setIsChecked([...isChecked,false])
                                     }}>Add</button>}
                     </div>
                 </div>
