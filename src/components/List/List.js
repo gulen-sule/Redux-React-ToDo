@@ -113,7 +113,10 @@ function List(props) {
                             <button className="btn-add" id="btn-b" type="button"
                                     onClick={deleteMultiple}>Delete</button> :
                             <button className="btn-add" id="btn-a"
-                                    onClick={() => dispatch(actions.add_todo(props.id,addedItem))}>Add</button>}
+                                    onClick={() => {
+                                        dispatch(actions.add_todo(props.id, addedItem))
+                                        setAddedItem("")
+                                    }}>Add</button>}
                     </div>
                 </div>
             </div>

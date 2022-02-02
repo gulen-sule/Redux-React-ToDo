@@ -17,7 +17,10 @@ function ListPage() {
             <div className="row">
                 <div className="col inp-list-page">
                     <input value={listName} onChange={(e) => setListName(e.target.value)}/>
-                    <Button className="btn-list-page" onClick={()=>dispatch(actions.add_list(listName))}>Add</Button>
+                    <Button className="btn-list-page" onClick={()=> {
+                        dispatch(actions.add_list(listName))
+                        setListName("")
+                    }}>Add</Button>
                 </div>
             </div>
             <div id="lists">
