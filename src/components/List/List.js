@@ -50,7 +50,6 @@ function List(props) {
         for (let a in chosenIndexes)
             console.log(a)
 
-
         if (!chosenIndexes.includes(index, 0)) {
             setHasChosen(true)
             setChosenIndexes([...chosenIndexes, index])

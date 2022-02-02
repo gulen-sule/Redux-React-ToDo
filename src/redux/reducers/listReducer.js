@@ -8,8 +8,11 @@ const initialState = {
 export default function listReducer(state = initialState, action) {
     switch (action.type) {
         case types.ADD_LIST:
-            const new_list = {list_name: action.payload.name, elements: []}
-            return {listNum: state.listNum + 1, lists: [...state.lists, new_list]}
+            if(action.payload.name!=="") {
+                const new_list = {list_name: action.payload.name, elements: []}
+                return {listNum: state.listNum + 1, lists: [...state.lists, new_list]}
+            }
+            return {...state}
 
         case types.DELETE_LIST:
             const temp = [...state.lists]
@@ -20,9 +23,12 @@ export default function listReducer(state = initialState, action) {
             }
 
         case types.ADD_TODO:
-            const new_lists = [...state.lists]
-            new_lists[action.payload.id].elements = [...new_lists[action.payload.id].elements, action.payload.text]
-            return {listNum: state.listNum, lists: new_lists}
+            if(action.payload.text!=="") {
+                const new_lists = [...state.lists]
+                new_lists[action.payload.id].elements = [...new_lists[action.payload.id].elements, action.payload.text]
+                return {listNum: state.listNum, lists: new_lists}
+            }
+            return {...state}
 
         case types.DELETE_TODO:
             const new_lists_del = [...state.lists]
