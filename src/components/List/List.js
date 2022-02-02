@@ -1,53 +1,51 @@
 import {useState} from "react";
 import {ListItem} from "./ListItem";
 import './List.css'
+import * as actions from '../../actions/index'
+import {useDispatch, useSelector} from "react-redux";
 
-function List() {
+function List(props) {
+    const items = useSelector((state =>  state.listReducer.lists[props.id].elements));
+    const [editItems, setEditItems] = useState([]);
     const [addedItem, setAddedItem] = useState("");
-    const [items, setItems] = useState(["temizlik", "ödev"]);
     const [editable, setEditable] = useState([false, false]);
     const [hasChosen, setHasChosen] = useState(false);
     const [chosenIndexes, setChosenIndexes] = useState([]);
-
-
-    const handleClick = () => {
-        if (addedItem !== "")
-            setItems([...items, addedItem])
-    }
+    const dispatch = useDispatch();
 
     const deleteMultiple = () => {
-        console.log(hasChosen)
         const temp = []
         for (let i = 0; i < items.length; i++) {
             if (!chosenIndexes.includes(i))
                 temp.push(items[i])
         }
+        dispatch(actions.delete_todos(props.id,temp))
         setChosenIndexes([])
-        setItems([...temp])
         setHasChosen(false)
     }
 
     function editList(event, index) {
-        items[index] = event.target.value
-        console.log("here")
-        setItems([...items])
+        editItems[index] = event.target.value
+        setEditItems([...editItems])
     }
 
-    function removeItem(index) {
-        items.splice(index, 1)
-        setItems([...items])
-    }
 
     function setOpp(index) {
         editable[index] = !editable[index]
         setEditable([...editable])
+        setEditItems([...items])
+       // dispatch(actions.edit_todo(props.id,editItems))
+    }
+    function setEdited(index) {
+        editable[index] = !editable[index]
+        setEditable([...editable])
+        dispatch(actions.edit_todo(props.id,editItems))
     }
 
     function checked(index) {
         for (let a in chosenIndexes)
             console.log(a)
 
-        console.log("break", index)
 
         if (!chosenIndexes.includes(index, 0)) {
             setHasChosen(true)
@@ -59,20 +57,18 @@ function List() {
                 setHasChosen(false)
             }
         }
-
-
     }
 
     function editItem(index) {
         return (
             <div className="row">
                 <div className="col-11">
-                    <input type='text' value={items[index]}
+                    <input type='text' value={editItems[index]}
                            onChange={(e) => editList(e, index)} className="input-box"/>
                 </div>
                 <div className="col-1">
                     <button className="btn-edit" type="button"
-                            onClick={() => setOpp(index)}>+
+                            onClick={() => setEdited(index)}>+
                     </button>
                 </div>
             </div>)
@@ -83,9 +79,10 @@ function List() {
         return (
             <>
                 <div className="col-1">
-                    <input type="checkbox" name={index} onClick={(e) => checked(index)}/>
+                    <input type="checkbox" name={index}  onClick={(e) => checked(index)}/>
                 </div>
                 <div className="col-9">
+
                     <ListItem item={items[index]}/>
                 </div>
                 <div className="col-1">
@@ -95,7 +92,7 @@ function List() {
                 </div>
                 <div className="col-1">
                     <button className="btn_remove" type="button"
-                            onClick={() => removeItem(index)}>x
+                            onClick={() => dispatch(actions.delete_todo(props.id,index))}>x
                     </button>
                 </div>
             </>
@@ -109,12 +106,14 @@ function List() {
                 <div className="container">
                     <div className="row" id="input-list">
 
-                        <input type="text" id="to-do-input" className="input-box"
+                        <input type="text" id="to-do-input" className="input-box" value={addedItem}
                                onChange={(e) => setAddedItem(e.target.value)}/>
 
                         {hasChosen ?
-                            <button className="btn-add" id="btn-b" type="button" onClick={deleteMultiple}>Delete</button> :
-                            <button className="btn-add" id="btn-a" onClick={(event) => handleClick(event)}>Add</button>}
+                            <button className="btn-add" id="btn-b" type="button"
+                                    onClick={deleteMultiple}>Delete</button> :
+                            <button className="btn-add" id="btn-a"
+                                    onClick={() => dispatch(actions.add_todo(props.id,addedItem))}>Add</button>}
                     </div>
                 </div>
             </div>

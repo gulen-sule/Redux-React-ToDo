@@ -3,41 +3,31 @@ import './ListPage.css'
 import {useSelector} from "react-redux";
 import ListFooter from "../listFooter/listFooter";
 import {Button} from "react-bootstrap";
-import {increment, decrement, addList, deleteList} from "../../../redux/shoplist/shoplistSlice";
+import * as actions from '../../../actions/index'
 import {useDispatch} from "react-redux";
+import List from "../List";
 
 function ListPage() {
-    let listsArr = useSelector((state => state.shoplist.lists))
-    let lists = useSelector((state => state.shoplist.listNames))
+    const lists = useSelector((state => state.listReducer.lists))
     const [listName, setListName] = useState("");
     const dispatch = useDispatch();
-
-    function addToList() {
-        dispatch(increment())
-        dispatch(addList(listName))
-    }
-
-    function deleteLists(index) {
-        dispatch(deleteList(index))
-        dispatch(decrement())
-    }
 
     return (
         <div className="container">
             <div className="row">
                 <div className="col inp-list-page">
                     <input value={listName} onChange={(e) => setListName(e.target.value)}/>
-                    <Button className="btn-list-page" onClick={addToList}>Add</Button>
+                    <Button className="btn-list-page" onClick={()=>dispatch(actions.add_list(listName))}>Add</Button>
                 </div>
             </div>
             <div id="lists">
-                {lists.map((listName, value) =>
+                {lists.map((list, value) =>
                     <div key={value} className="row">
                         <div className="list-card-title">
-                            <Button id="btn-dlt-list" onClick={() => deleteLists(value)}>X</Button>
-                            {listName}</div>
+                            <Button id="btn-dlt-list" onClick={() => dispatch(actions.delete_list(value))}>X</Button>
+                            {list.list_name}</div>
                         <div className="list-card">
-                            {listsArr[value]}
+                            <List id={value}/>
                         </div>
                     </div>
                 )}
