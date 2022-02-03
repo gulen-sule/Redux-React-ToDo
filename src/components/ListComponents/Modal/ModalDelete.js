@@ -10,7 +10,7 @@ function ModalDelete(props) {
     const [show, setShow] = useState(true);
     const handleClose = () => setShow(false);
 
-    function deleteItem(value) {
+    function deleteItems(value) {
         switch (props.type) {
             case modal_types.LIST:
                 dispatch(actions.delete_list(props.value))
