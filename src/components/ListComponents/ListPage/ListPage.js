@@ -68,7 +68,7 @@ function ListPage() {
                                 setShow(true)
                                 setIndex_delete(index)
                             }}>X</Button>
-                            <div className="col-8">
+                            <div className="col-8 editable_style">
                                 <EditableInput item={list.list_name} id={index} type={editable_types.LIST}/>
                             </div>
 
