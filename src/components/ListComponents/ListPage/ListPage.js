@@ -25,7 +25,9 @@ function ListPage() {
         if (e.key === "Enter")
             addItem()
     }
+
     const handleClose = () => setShow(false);
+
     function ModalDelete() {
         return (<Modal show={show} onHide={handleClose}>
             <Modal.Body>
@@ -33,8 +35,8 @@ function ListPage() {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button onClick={()=> {
-                    console.log(index_delete,"noo")
+                <Button onClick={() => {
+                    console.log(index_delete, "noo")
                     dispatch(actions.delete_list(index_delete))
                     setShow(false)
                 }} variant="secondary">Yes</Button>
@@ -61,12 +63,15 @@ function ListPage() {
                 {ModalDelete()}
                 {lists.map((list, index) =>
                     <div key={index} className="row">
-                        <div className="list-card-title">
-                            <Button id="btn-dlt-list" onClick={() => {
+                        <div className="list-card-title row">
+                            <Button id="btn-dlt-list" className="col-2" onClick={() => {
                                 setShow(true)
                                 setIndex_delete(index)
                             }}>X</Button>
-                            <EditableInput item={list.list_name} id={index} type={editable_types.LIST}/>
+                            <div className="col-8">
+                                <EditableInput item={list.list_name} id={index} type={editable_types.LIST}/>
+                            </div>
+
                         </div>
                         <div className="list-card">
                             <List id={index}/>
