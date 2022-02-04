@@ -3,7 +3,7 @@ import * as editable_types from '../../../constants/editableTypes'
 import './List.css'
 import * as actions from '../../../actions'
 import {useDispatch, useSelector} from "react-redux";
-import EditableInput from "../EditableInput";
+import EditableInput from "../editableInput/EditableInput";
 import {Button, Modal} from "react-bootstrap";
 
 
