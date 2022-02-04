@@ -23,7 +23,6 @@ function EditableInput(props) {
         }
         setEditable(false)
     }
-
     function givenInput(e) {
         setItem(e.currentTarget.textContent)
     }
