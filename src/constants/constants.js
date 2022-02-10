@@ -1,0 +1,1 @@
+export const REACT_APP_GOOGLE_CLIENT_ID="428282194470-c0i5cou1pi0smngorpts6orintfd4dod.apps.googleusercontent.com"

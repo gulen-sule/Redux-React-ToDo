@@ -8,15 +8,20 @@
     border-bottom: solid rgba(190, 180, 85, 0.66);
     margin: 6px;
 }
-.list-card-title {
+#list-card-title {
     padding: 8px;
     width: 780px;
     border-bottom: solid rgba(122, 80, 1, 0.8);
     font-size: 20px;
     border-radius: 20px;
     background-color: #f6e7a5;
-    left: 50%;
-    margin: 6px;
+    margin: 8px;
+}
+#whole_list{
+    display: flow;
+    left: 60%;
+    justify-content: center;
+    align-items: center;
 }
 
 .fonts {
@@ -47,7 +52,7 @@
     color: black;
     margin: 8px 12px 8px 6px;
 }
-.editable_style{
+#editable_style{
     margin: 8px 12px 8px 6px;
 }
 

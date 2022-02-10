@@ -62,13 +62,13 @@ function ListPage() {
             <div id="lists">
                 {ModalDelete()}
                 {lists.map((list, index) =>
-                    <div key={index} className="row">
-                        <div className="list-card-title row">
+                    <div key={index}  id={"whole_list"}>
+                        <div className=" row " id={"list-card-title"}>
                             <Button id="btn-dlt-list" className="col-2" onClick={() => {
                                 setShow(true)
                                 setIndex_delete(index)
                             }}>X</Button>
-                            <div className="col-8 editable_style">
+                            <div className="col-8 " id={"editable_style"}>
                                 <EditableInput item={list.list_name} id={index} type={editable_types.LIST}/>
                             </div>
 

@@ -9,6 +9,11 @@
     border-radius: 10px;
     justify-content: center;
 }
+.error{
+    color: rgba(139, 0, 0, 0.51);
+    font-size: 12px;
+
+}
 #link_login{
     width: max-content;
     display: block;
