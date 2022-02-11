@@ -1,28 +1,35 @@
 import React from 'react';
-import '../signIn/signInPage.css'
+import '../signUp/signUpPage.css'
 import {Link} from "react-router-dom";
-import {auth, provider} from "../../utils/firebase";
+import {auth, db, provider} from "../../utils/firebase";
 import firebase from "firebase/app";
 import {Formik} from "formik";
-import {db} from "../../utils/firebase";
+import './loginPage.css'
+import loginSchema from "./LoginValidations";
+import * as actions from "../../actions";
+
 class LoginPage extends React.Component {
     constructor() {
         super();
         this.uid=""
     }
 
-    componentWillMount() {
-        this.uid=(localStorage.getItem("uid"))
-        console.log(this.uid, ": here")
-        if (this.uid !== null) {
-            db.collection("accounts").doc(this.uid).get().then((data) => {
+    /*componentWillMount() {
+        // storing input name
+        const uid=localStorage.getItem("uid")
+        console.log(uid, ": here")
+        if (uid === ""||uid == null) {
+            //setIsLoggedIn(false)
+        } else {
+            db.collection("accounts").doc(uid).get().then((data) => {
                 if (data.exists) {
-                    localStorage.setItem("uid", this.uid)
-                    window.location.href = '/mainPage'
+                    localStorage.setItem("uid", uid)
+                    actions.setProfileInfo(uid)
+                    window.location.href = '/profile'
                 }
             })
         }
-    }
+    }*/
 
     handleLogin = () => {
         auth.signInWithPopup(provider).catch(alert).then(res => {
@@ -42,7 +49,8 @@ class LoginPage extends React.Component {
                         const user = userCredential.user;
                         console.log(user.uid)
                         localStorage.setItem("uid", user.uid)
-                        window.location.href = '/mainPage'
+                        actions.setProfileInfo(user.uid)
+                        window.location.href = '/profile'
                     })
                     .catch((error) => {
                         const errorCode = error.code;
@@ -51,12 +59,12 @@ class LoginPage extends React.Component {
                         console.log(errorCode, ": ", errorMessage)
                     });
                 console.log(JSON.stringify(values, null, 2))
-            }
+            }, validationSchema:loginSchema
         }
 
 
         return (
-            <div className="card signIn">
+            <div className="card " id={"logIn"}>
                 <div>
                     <center>
                         <button style={{"marginTop": "2px"}}
@@ -92,7 +100,7 @@ class LoginPage extends React.Component {
                         </form>)}
                 </Formik>
                 <div id="link_login">
-                    You have account?<Link to="/"> Press to Sign In</Link>
+                    You have account?<Link to="/signUp"> Press to Sign Up</Link>
                 </div>
             </div>
         );

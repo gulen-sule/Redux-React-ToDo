@@ -1,14 +1,12 @@
 import React from 'react';
 import {Formik} from "formik";
 import {Link} from "react-router-dom";
-import './signInPage.css'
 import firebase from "firebase/app";
-import SignInValidation from "./signInValidation";
+import SignInValidation from "./signUpValidation";
 import {db} from "../../utils/firebase";
 
-class SignInPage extends React.Component {
+class SignUpPage extends React.Component {
     render() {
-
         const formik = {
             initialValues: {
                 firstName: "",
@@ -18,7 +16,7 @@ class SignInPage extends React.Component {
                 password: "",
             }, onSubmit: values => {
                 firebase.auth().createUserWithEmailAndPassword(values.email, values.password).then((response) => {
-                    console.log(response.user.uid, " response")
+                    //console.log(response.user.uid, " response")
                     try {
                         let user = {
                             firstName: values.firstName,
@@ -27,11 +25,10 @@ class SignInPage extends React.Component {
                             userName: values.userName,
                             password: values.password
                         }
-                        console.log(values.firstName, " here")
                         db.collection("accounts").doc(response.user.uid).set(user)
                             .then(r => {
                                 console.log(r)
-                                window.location.href = '/logIn'
+                                window.location.href = '/login'
                             })
 
                     } catch (e) {
@@ -43,7 +40,7 @@ class SignInPage extends React.Component {
 
         return (
             <div>
-                <div className="card signIn">
+                <div className="card " id={"signUp"}>
                     <h3 id="title_login">TO DO LIST</h3>
                     <Formik {...formik} >
                         {formik =>
@@ -100,7 +97,7 @@ class SignInPage extends React.Component {
                             </form>)}
                     </Formik>
                     <div id="link_login">
-                        You have account?<Link to="/logIn"> Press to Login</Link>
+                        You have account?<Link to="/login"> Press to Login</Link>
                     </div>
                 </div>
 
@@ -111,4 +108,4 @@ class SignInPage extends React.Component {
 
 }
 
-export default SignInPage;
+export default SignUpPage;

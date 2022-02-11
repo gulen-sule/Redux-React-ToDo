@@ -1,9 +1,20 @@
 import React from 'react';
 import './profile.css'
+import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
+import profileReducer from "../../redux/reducers/profileReducer";
+function ProfilePage(props) {
+    const user=useSelector((state => state.profileReducer))
+    console.log(JSON.stringify(user), " user")
 
-function Profile(props) {
+    function LogOut() {
+        localStorage.removeItem("uid")
+        window.location.href = '/login'
+    }
+
     return (
         <div className="container mt-5">
+            {/*{console.log(JSON.stringify(user), " user")}*/}
             <div className="row d-flex justify-content-center">
                 <div className="col-md-7">
                     <div className="card p-3 py-4">
@@ -32,6 +43,7 @@ function Profile(props) {
                                 <div className="buttons">
                                     <button className="btn btn-outline-primary px-4">Message</button>
                                     <button className="btn btn-primary px-4 ms-3">Contact</button>
+                                    <button  onClick={LogOut} className="btn btn-primary px-4 ms-3">Log Out</button>
                                 </div>
                             </div>
                         </div>
@@ -42,4 +54,4 @@ function Profile(props) {
     );
 }
 
-export default Profile;
+export default ProfilePage;

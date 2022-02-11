@@ -1,13 +1,13 @@
-.signIn{
+#logIn{
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 20px;
     width: min-content;
     align-items: center;
     border-radius: 10px;
-    justify-content: center;
 }
 .error{
     color: rgba(139, 0, 0, 0.51);

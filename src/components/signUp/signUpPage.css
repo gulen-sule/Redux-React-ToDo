@@ -1,0 +1,54 @@
+#signUp{
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: min-content;
+    align-items: center;
+    border-radius: 10px;
+}
+.error{
+    color: rgba(139, 0, 0, 0.51);
+    font-size: 12px;
+
+}
+#link_login{
+    width: max-content;
+    display: block;
+    margin-left: auto;
+    padding-top: 10px;
+    color: rgba(78, 78, 78, 0.7);
+    border-top: 1px rgba(79, 79, 79, 0.32) solid;
+    margin-top: 12px;
+    margin-right: auto;
+}
+#title_login{
+    text-align: center;
+    font-family: "Bitstream Charter", serif;
+    border-bottom: 1px solid rgb(140, 140, 140);
+    margin-bottom: 18px;
+}
+input{
+    display: flex;
+    border: 1px rgba(79, 79, 79, 0.39) solid;
+    border-radius: 4px;
+    align-items: center;
+    padding: 4px 10px 4px 10px;
+    justify-content: center;
+}
+.btn_submit{
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    width: inherit;
+    padding: 4px 10px 4px 10px;
+    color: #eeeeee;
+    font-size: 16px;
+    font-style: initial;
+    border-radius: 8px;
+    background-color: rgba(88, 150, 78, 0.79);
+    border : 1px solid rgba(246, 231, 165, 0.62);
+    margin-right: auto;
+}
