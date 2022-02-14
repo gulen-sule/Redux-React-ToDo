@@ -1,20 +1,27 @@
 import React from 'react';
 import './profile.css'
-import {Link} from "react-router-dom";
-import {useSelector} from "react-redux";
-import profileReducer from "../../redux/reducers/profileReducer";
+import {useDispatch, useSelector} from "react-redux";
+import * as actions from '../../actions/index'
+import {db} from "../../utils/firebase";
 function ProfilePage(props) {
-    const user=useSelector((state => state.profileReducer))
-    console.log(JSON.stringify(user), " user")
+   // const user = useSelector((state =>state.profileReducer() ))
+    const user = useSelector((state=>state.profileReducer))
+    const dispatch = useDispatch();
 
-    function LogOut() {
-        localStorage.removeItem("uid")
-        window.location.href = '/login'
+     function LogOut() {
+         dispatch(actions.delProfileInfo())
+         localStorage.removeItem("uid")
+       // console.log(user, " user")
+        user.then(res=>console.log(res, " iss"))
+//console.log(isLoggedIn)
+          window.location.href = '/login'
+
     }
 
     return (
+
         <div className="container mt-5">
-            {/*{console.log(JSON.stringify(user), " user")}*/}
+
             <div className="row d-flex justify-content-center">
                 <div className="col-md-7">
                     <div className="card p-3 py-4">
@@ -43,7 +50,7 @@ function ProfilePage(props) {
                                 <div className="buttons">
                                     <button className="btn btn-outline-primary px-4">Message</button>
                                     <button className="btn btn-primary px-4 ms-3">Contact</button>
-                                    <button  onClick={LogOut} className="btn btn-primary px-4 ms-3">Log Out</button>
+                                    <button onClick={()=>LogOut()} className="btn btn-primary px-4 ms-3">Log Out</button>
                                 </div>
                             </div>
                         </div>

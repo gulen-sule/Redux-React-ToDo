@@ -8,3 +8,4 @@ export const delete_todos = (id, elements) => ({type: types.DELETE_TODOS, payloa
 export const edit_todo = (id, index, item) => ({type: types.EDIT_TODO, payload: {id: id, index: index, item: item}})
 export const edit_list_name = (id, item) => ({type: types.EDIT_LIST_NAME, payload: {id: id, item: item}})
 export const setProfileInfo = (uid) => ({type: types.SET_PROFILE_INFO, payload: {uid: uid}})
+export const delProfileInfo = () => ({type: types.DEL_PROFILE_INFO})

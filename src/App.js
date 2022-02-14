@@ -8,11 +8,13 @@ import LoginPage from "./components/login/loginPage";
 import ProfilePage from "./components/Profile/profilePage";
 import ListPage from "./components/ListComponents/ListPage/ListPage";
 import {db} from "./utils/firebase";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 function App() {
-    const isLoggedIn=useSelector((state => state.profileReducer.isLoggedIn))
+    let isLoggedIn ;
+    useSelector((state => state.profileReducer)).then(res=>isLoggedIn =res.isLoggedIn);
     const [uid, setUid] = useState("");
+    const dispatch = useDispatch();
     //const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     /* const GuardedRoute = ({loggedIn, ...props}) => {
@@ -21,38 +23,44 @@ function App() {
          }
          return <Route to="/login"/>
      }*/
-console.log(isLoggedIn,"is")
     useEffect(() => {
         // storing input name
+        // eslint-disable-next-line no-restricted-globals
         setUid(localStorage.getItem("uid"))
         console.log(uid, ": here")
-        if (uid === ""||uid == null) {
+        if (uid === "" || uid == null) {
             //setIsLoggedIn(false)
         } else {
             db.collection("accounts").doc(uid).get().then((data) => {
                 if (data.exists) {
                     localStorage.setItem("uid", uid)
-                    actions.setProfileInfo(uid)
+                    dispatch(actions.setProfileInfo(uid))
+                    console.log(isLoggedIn, "iss")
+                    // setIsLoggedIn(true)
                 }
             })
         }
-    }, [isLoggedIn]);
+    }, );
+    /*useEffect(() => {
+    store.subscribe((state)=>{
+        console.log(state, ":state")
+    })
+    },[])*/
     return (
-
         <div id="whole_page">
             <div>
                 <Router>
                     <Link to="/"><img className="placeholder-item"
-                                              src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/1000_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg"
-                                              alt="image-profile-placeholder" width={"38px;"}/></Link>
-                    <Link to={ isLoggedIn ?("/profile"):("/login")}>
+                                      src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/1000_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg"
+                                      alt="image-profile-placeholder" width={"38px;"}/></Link>
+                    <Link to={isLoggedIn ? ("/profile") : ("/login")}>
                         <img
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiItcLdyEroY3V8TFUW3tNjVCX5aNXBwKgAA&usqp=CAU"
                             alt="image-profile-placeholder" width={"38px;"}/>
                     </Link>
 
                     <Routes>
-                        <Route  path="/login" element={<LoginPage/>}/>
+                        <Route path="/login" element={<LoginPage/>}/>
                         <Route path="/signUp" element={<SignUpPage/>}/>
                         <Route path="/profile" element={<ProfilePage/>}/>
                         <Route exact path="/" element={<ListPage/>}/>

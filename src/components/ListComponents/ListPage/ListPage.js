@@ -8,7 +8,6 @@ import {useDispatch} from "react-redux";
 import List from "../List/List";
 import * as editable_types from '../../../constants/editableTypes'
 import EditableInput from "../editableInput/EditableInput";
-import {Link} from "react-router-dom";
 
 function ListPage() {
     const lists = useSelector((state => state.listReducer.lists))
