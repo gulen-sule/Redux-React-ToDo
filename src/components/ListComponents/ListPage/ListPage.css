@@ -17,6 +17,12 @@
     background-color: #f6e7a5;
     margin: 8px;
 }
+#isActive{
+    font-size: 38px;
+    text-align: right;
+    background-color: rgba(245, 232, 183, 0);
+    border-color: rgba(245, 232, 183, 0);
+}
 #whole_list{
     display: flow;
     left: 60%;

@@ -2,37 +2,29 @@ import React from 'react';
 import './profile.css'
 import {useDispatch, useSelector} from "react-redux";
 import * as actions from '../../actions/index'
-import {db} from "../../utils/firebase";
 function ProfilePage(props) {
-   // const user = useSelector((state =>state.profileReducer() ))
-    const user = useSelector((state=>state.profileReducer))
+    //let  user=useSelector((state=>state.profileReducer.user))
     const dispatch = useDispatch();
 
      function LogOut() {
          dispatch(actions.delProfileInfo())
-         localStorage.removeItem("uid")
-       // console.log(user, " user")
-        user.then(res=>console.log(res, " iss"))
+       localStorage.removeItem("uid")
+        // console.log(user, " user")
+        //user.then(res=>console.log(res, " iss"))
 //console.log(isLoggedIn)
           window.location.href = '/login'
 
     }
 
     return (
-
         <div className="container mt-5">
-
             <div className="row d-flex justify-content-center">
                 <div className="col-md-7">
                     <div className="card p-3 py-4">
                         <div className="text-center">
-                            <img
-                                src="https://media.istockphoto.com/vectors/default-avatar-profile-icon-grey-photo-placeholder-hand-drawn-modern-vector-id1273297997?k=20&m=1273297997&s=612x612&w=0&h=EkhPspb58IrPQnchFVjZFrz5R1hnCZJTTH_l34J2EtU="
-                                width="100"
-                                className="rounded-circle"/>
                             <div className="text-center mt-3"><span
-                                className="bg-secondary p-1 px-4 rounded text-white">Pro</span>
-                                <h5 className="mt-2 mb-0">Alexender Schidmt</h5> <span>UI/UX Designer</span>
+                                className="bg-secondary p-1 px-4 rounded text-white">Profile</span>
+                                <h5 className="mt-2 mb-0"></h5> <span>UI/UX Designer</span>
                                 <div className="px-4 mt-1">
                                     <p className="fonts">Consectetur adipiscing elit, sed do eiusmod tempor incididunt
                                         ut

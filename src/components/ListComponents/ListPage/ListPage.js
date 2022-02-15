@@ -15,9 +15,11 @@ function ListPage() {
     const dispatch = useDispatch();
     const [show, setShow] = useState(false);
     const [index_delete, setIndex_delete] = useState(0);
+    const [isActive, setIsActive] = useState([]);
 
     function addItem() {
         dispatch(actions.add_list(listName))
+        setIsActive([...isActive, false])
         setListName("")
     }
 
@@ -49,39 +51,42 @@ function ListPage() {
 
     return (
         <>
-        <div className="container">
-            <div className="row">
-                <div className="col inp-list-page">
-                    <input onKeyPress={(e) => keyPressed(e)} value={listName}
-                           placeholder={"Enter text"} onChange={(e) => setListName(e.target.value)}/>
-                    <Button className="btn-list-page"
-                            onClick={() => {
-                                addItem()
-                            }}>Add</Button>
+            <div className="container">
+                <div className="row">
+                    <div className="col inp-list-page">
+                        <input onKeyPress={(e) => keyPressed(e)} value={listName}
+                               placeholder={"Enter text"} onChange={(e) => setListName(e.target.value)}/>
+                        <Button className="btn-list-page"
+                                onClick={() => {
+                                    addItem()
+                                }}>Add</Button>
+                    </div>
                 </div>
-            </div>
-            <div id="lists">
-                {ModalDelete()}
-                {lists.map((list, index) =>
-                    <div key={index}  id={"whole_list"}>
-                        <div className=" row " id={"list-card-title"}>
-                            <Button id="btn-dlt-list" className="col-2" onClick={() => {
-                                setShow(true)
-                                setIndex_delete(index)
-                            }}>X</Button>
-                            <div className="col-8 " id={"editable_style"}>
-                                <EditableInput item={list.list_name} id={index} type={editable_types.LIST}/>
+                <div id="lists">
+                    {ModalDelete()}
+                    {lists.map((list, index) =>
+                        <div key={index} id={"whole_list"}>
+                            <div className=" row " id={"list-card-title"}>
+                                <Button id="btn-dlt-list" className="col-2" onClick={() => {
+                                    setShow(true)
+                                    setIndex_delete(index)
+                                }}>X</Button>
+                                <div className="col-9 " id={"editable_style"}>
+                                    <EditableInput item={list.list_name} id={index} type={editable_types.LIST}/>
+                                </div>
+                                <button className={"col-1"} id={"isActive"}
+                                     onClick={() => isActive[index] = !isActive[index]} >
+                                    {isActive[index] ? '-' : '+'}</button>
                             </div>
+                            {isActive[index] && <div className="list-card accordion-body">
+                                <List id={index}/>
+                            </div>}
 
                         </div>
-                        <div className="list-card">
-                            <List id={index}/>
-                        </div>
-                    </div>
-                )}
+                    )}
+                </div>
+                <ListFooter/>
             </div>
-            <ListFooter/>
-        </div>
         </>
     )
         ;
