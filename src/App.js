@@ -40,7 +40,7 @@ function App() {
                 }
             })
         }
-    }, );
+    },[isLoggedIn] );
     /*useEffect(() => {
     store.subscribe((state)=>{
         console.log(state, ":state")
